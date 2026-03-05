@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+body {
+  background: linear-gradient(to bottom right, #2e1065, #581c87, #1e1b4b);
+  min-height: 100vh;
+}
