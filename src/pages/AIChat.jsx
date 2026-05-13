@@ -75,7 +75,7 @@ function AIChat() {
 
       {/* How to use */}
       {!response && !loading && (
-        <div className="max-w-3xl mx-auto mb-6 grid grid-cols-3 gap-3">
+        <div className="max-w-3xl mx-auto mb-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { icon: <Camera size={28} />, title: 'ছবি দিন', desc: 'আক্রান্ত স্থানের ছবি upload করুন' },
             { icon: <PenLine size={28} />, title: 'Symptoms লিখুন', desc: 'আপনার সমস্যা বাংলায় লিখুন' },

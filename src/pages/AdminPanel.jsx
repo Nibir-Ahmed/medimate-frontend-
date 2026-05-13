@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Users, FileText, Trash2, LayoutDashboard, ShieldCheck, TrendingUp } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 
-const BASE_URL = "http://localhost:8080/api/admin"
+const BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:3001/api") + "/admin"
 
 function AdminPanel() {
   const [activeTab, setActiveTab] = useState('dashboard')
@@ -43,17 +43,25 @@ function AdminPanel() {
   }
 
   const deleteUser = async (id) => {
-    if (!confirm('এই user কে delete করবেন?')) return
-    await fetch(`${BASE_URL}/users/${id}`, { method: 'DELETE' })
-    fetchUsers()
-    fetchStats()
+    if (!window.confirm('এই user কে delete করবেন?')) return
+    try {
+      await fetch(`${BASE_URL}/users/${id}`, { method: 'DELETE' })
+      fetchUsers()
+      fetchStats()
+    } catch (err) {
+      console.error('Delete user error:', err)
+    }
   }
 
   const deletePost = async (id) => {
-    if (!confirm('এই post টি delete করবেন?')) return
-    await fetch(`${BASE_URL}/posts/${id}`, { method: 'DELETE' })
-    fetchPosts()
-    fetchStats()
+    if (!window.confirm('এই post টি delete করবেন?')) return
+    try {
+      await fetch(`${BASE_URL}/posts/${id}`, { method: 'DELETE' })
+      fetchPosts()
+      fetchStats()
+    } catch (err) {
+      console.error('Delete post error:', err)
+    }
   }
 
   const chartData = [
